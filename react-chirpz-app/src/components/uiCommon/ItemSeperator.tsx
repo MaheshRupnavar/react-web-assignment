@@ -13,8 +13,9 @@ const ItemSeperator: React.FC<Props> = ({ containerStyle }) => {
 
 const styles = StyleSheet.create({
   seperator: {
-    borderWidth: ms(1),
-    borderColor: COLORS.greyTxt,
+    height: ms(1.5),
+    backgroundColor: COLORS.greyTxt,
+    opacity:0.5,
     width: SIZES.width,
     alignSelf: 'center',
   },

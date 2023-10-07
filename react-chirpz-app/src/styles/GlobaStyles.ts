@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
 import {COLORS, FONTS, SIZES} from './theme';
-import {ms, mvs, scale as sc} from 'react-native-size-matters';
 
 export const GlobalStyles = StyleSheet.create({
   container: {
@@ -18,4 +17,25 @@ export const GlobalStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  rowCenterSpaceBetween: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+
+  labelTxt:{
+    fontSize:SIZES.f16,
+    fontFamily:FONTS.bold,
+    color:COLORS.white,
+  },
+  inputTxt:{
+    fontSize:SIZES.f16,
+    fontFamily:FONTS.regular,
+    color:COLORS.greyTxt,
+  },
+  placeHolderTxt:{
+    fontSize:SIZES.f16,
+    fontFamily:FONTS.regular,
+    color:COLORS.greyTxt,
+  }
 })

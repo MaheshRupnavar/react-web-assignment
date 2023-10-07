@@ -1,20 +1,25 @@
-import { View, Text, TouchableOpacity, StatusBar, Platform, KeyboardAvoidingView } from 'react-native'
-import React, { useEffect } from 'react'
+import { View,  StatusBar, Platform, KeyboardAvoidingView } from 'react-native'
+import React from 'react'
 import { COLORS } from '../styles/theme';
 import { NavigationContainer } from '@react-navigation/native';
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import screenNames from '../constants/screenNames';
 import { CreatePost, Home, Splash } from '../screens';
+import { Loader } from '../components/uiCommon';
+import { useSelector } from 'react-redux';
 
 
 const Stack = createStackNavigator();
 
 const AppContainer = () => {
 
+    const {LOADING} = useSelector((state:any) => state.loading);
+
 
     return (
         <NavigationContainer>
             <View style={{ flex: 1 }}>
+            <Loader loading={LOADING} /> 
                 <StatusBar translucent backgroundColor={COLORS.bg} barStyle="light-content" />
                 <KeyboardAvoidingView
                     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}

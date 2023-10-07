@@ -1,21 +1,35 @@
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList,  RefreshControl } from 'react-native'
 import React from 'react'
-import { ItemSeperator } from '../../../components/uiCommon'
+import { ItemSeperator, TagsList } from '../../../components/uiCommon'
 import { GlobalStyles } from '../../../styles/GlobaStyles'
 import { styles } from '../styles'
+import { useSelector } from 'react-redux'
+import Icons from 'react-native-vector-icons/Ionicons'
+import { COLORS } from '../../../styles/theme'
+import { mvs } from 'react-native-size-matters'
 
 type Props = {
-    data: any,
+    onRefresh?: () => void
 }
 
+const PostListComponent = ({ onRefresh }: Props) => {
 
-const PostListComponent = ({ data }: Props) => {
+    const { POST_DATA } = useSelector((state: any) => state.data);
+    const { REFRESHING } = useSelector((state: any) => state.loading);
+
     return (
         <FlatList
-            data={data}
-            keyExtractor={(item) => `-${item.id}`}
+            data={POST_DATA}
+            keyExtractor={(item) => `POSTLIST-${item.id}`}
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{}}
+            refreshControl={
+                <RefreshControl
+                    onRefresh={onRefresh}
+                    refreshing={REFRESHING}
+                    colors={[COLORS.theme]}
+                />
+            }
+            contentContainerStyle={{ paddingTop: mvs(10), paddingBottom: mvs(80) }}
             ItemSeparatorComponent={() => <ItemSeperator />}
             renderItem={({ item, index }) => {
                 return (
@@ -24,11 +38,18 @@ const PostListComponent = ({ data }: Props) => {
                             <Text style={styles.userName} >{item?.userName}</Text>
                             {
                                 item?.isVerified &&
-                                <View style={[styles.verifiedContainer,GlobalStyles.alignJustifyCenter]} >
-                                    
+                                <View style={[styles.verifiedContainer, GlobalStyles.alignJustifyCenter]} >
+                                    <Icons name="checkmark-sharp" color={COLORS.bg} size={16} />
                                 </View>
                             }
+
                         </View>
+
+                        <View style={{ marginVertical: mvs(10) }} >
+                            <Text style={styles.descText} >{item?.caption}</Text>
+                        </View>
+
+                        <TagsList data={item?.tags} />
 
                     </View>
                 )

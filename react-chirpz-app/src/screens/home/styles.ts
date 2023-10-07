@@ -9,8 +9,7 @@ export const styles = StyleSheet.create({
         alignSelf:'center',
         height:mvs(80),
         width:SIZES.cardWidth,
-        // backgroundColor:COLORS.theme,
-        // paddingVertical:mvs(15),
+      
 
     },
     profileImageContainer:{
@@ -36,8 +35,26 @@ export const styles = StyleSheet.create({
     verifiedContainer:{
         height:ms(20),
         width:ms(20),
-        borderRadius:SIZES.f10,
-        
+        backgroundColor:COLORS.theme,
+        borderRadius:ms(10),
+        marginLeft:ms(15)
+    },
+    descText:{
+        fontSize:SIZES.f16,
+        fontFamily:FONTS.regular,
+        color:COLORS.greyTxt,
+    },
+    
+    addPostBtnContainer:{
+        position:'absolute',
+        bottom:mvs(30),
+        right:ms(20)
+    },
+    btnLinearContainer:{
+        height:ms(50),
+        width:ms(50),
+        borderRadius:ms(25),
+
     }
 
 })
