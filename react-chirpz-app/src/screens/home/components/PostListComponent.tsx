@@ -5,7 +5,7 @@ import { GlobalStyles } from '../../../styles/GlobaStyles'
 import { styles } from '../styles'
 import { useSelector } from 'react-redux'
 import Icons from 'react-native-vector-icons/Ionicons'
-import { COLORS } from '../../../styles/theme'
+import { COLORS, SIZES } from '../../../styles/theme'
 import { mvs } from 'react-native-size-matters'
 
 type Props = {
@@ -28,6 +28,11 @@ const PostListComponent = ({ onRefresh }: Props) => {
                     refreshing={REFRESHING}
                     colors={[COLORS.theme]}
                 />
+            }
+            ListEmptyComponent={
+            <View style={{width:SIZES.cardWidth,alignSelf:'center',marginTop:mvs(20)}} >
+                 <Text style={styles.descText} >Please start the serverApp or go to the src/services/helper/axiosInterceptor.ts file and place the your ip in the base url </Text>
+            </View>
             }
             contentContainerStyle={{ paddingTop: mvs(10), paddingBottom: mvs(80) }}
             ItemSeparatorComponent={() => <ItemSeperator />}
